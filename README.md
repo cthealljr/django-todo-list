@@ -69,7 +69,7 @@ In your Django project:
 
     urlpatterns = [
         # other urls
-        path('todo/', include(todo_urls)), # this is just en example, you can whatever path you want, even "/" if this is the only app.
+        path('todo/', include(todo_urls)), # this is just an example, you can use whatever path you want, even "/" if this is the only app.
         # other urls
     ]
     ```
