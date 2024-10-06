@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}List of Todo Items{% endblock %}
+
+{% block content %}
+<h1>Todo List</h1>
+<ul class="sort-by-items">
+    <li class="sort-by-item"><a href="?sort_by=name">Sort by Name (Ascending)</a></li>
+    <li class="sort-by-item"><a href="?sort_by=-name">Sort by Name (Descending)</a></li>
+    <li class="sort-by-item"><a href="?sort_by=description">Sort by Description (Ascending)</a></li>
+    <li class="sort-by-item"><a href="?sort_by=-description">Sort by Description (Descending)</a></li>
+</ul>
+<ul class="sort-by-items">
+    <li class="sort-by-item"><a href="?sort_by=due_date">Sort by Due Date (Ascending)</a></li>
+    <li class="sort-by-item"><a href="?sort_by=-due_date">Sort by Due Date (Descending)</a></li>
+    <li class="sort-by-item"><a href="?sort_by=done">Sort by Done (Ascending)</a></li>
+    <li class="sort-by-item"><a href="?sort_by=-done">Sort by Done (Descending)</a></li>
+</ul>
+<table class="table todo-list">
+    <thead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Due Date</th>
+        <th>Done</th>
+    </thead>
+{% for todo in object_list %}
+    <tr>
+        <td>{{todo.name}}</td>
+        <td>{{todo.description}}</td>
+        <td>{%if todo.due_date%}{{todo.due_date}}{%endif%}</td>
+        <td>
+            <input type="checkbox" {%if todo.done %}checked{%endif%} disabled />
+            {%if not todo.done%}
+            <form action="{% url 'todo-mark-done' todo.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Mark Done"/>
+            </form>
+            {%endif%}
+        </td>
+    </tr>
+{% empty %}
+    <tr>
+        <td>There are no todo items.</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

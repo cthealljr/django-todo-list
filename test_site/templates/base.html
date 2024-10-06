@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <title>{% block title %}Todo List Django Web Application{% endblock %}</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="navigation-items">
+            <li class="navigation-item"><a href="{% url 'todo-list' %}">Todo List</a></li>
+            <li class="navigation-item"><a href="{% url 'todo-create' %}">Add a new Todo item</a></li>
+        </ul>
+    </nav>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
