@@ -31,14 +31,16 @@
         <td>{%if todo.due_date%}{{todo.due_date}}{%endif%}</td>
         <td>
             <input type="checkbox" {%if todo.done %}checked{%endif%} disabled />
+        </td>
+        <td class="todo-list-actions">
             {%if not todo.done%}
             <form action="{% url 'todo-mark-done' todo.id %}" method="post">
                 {% csrf_token %}
-                <input type="submit" value="Mark Done"/>
+                <input class="todo-list-action" type="submit" value="Mark Done"/>
             </form>
             {%endif%}
+            <a class="todo-list-action" href="{% url 'todo-delete' todo.id %}">Delete</a>
         </td>
-        <td><a href="{% url 'todo-delete' todo.id %}">Delete</a></td>
     </tr>
 {% empty %}
     <tr>
