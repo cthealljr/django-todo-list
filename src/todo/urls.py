@@ -17,6 +17,7 @@ from django.urls import path
 from .views import (
     ListTodoItems,
     CreateTodoItem,
+    DeleteTodoItem,
     handle_mark_todo_done
 )
 
@@ -24,4 +25,5 @@ urlpatterns = [
     path("list/", ListTodoItems.as_view(), name="todo-list"),
     path("create/", CreateTodoItem.as_view(), name="todo-create"),
     path("done/<int:todo_id>", handle_mark_todo_done, name="todo-mark-done"),
+    path("delete/<int:pk>", DeleteTodoItem.as_view(), name="todo-delete"),
 ]

@@ -22,6 +22,7 @@
         <th>Description</th>
         <th>Due Date</th>
         <th>Done</th>
+        <th>Actions</th>
     </thead>
 {% for todo in object_list %}
     <tr>
@@ -37,6 +38,7 @@
             </form>
             {%endif%}
         </td>
+        <td><a href="{% url 'todo-delete' todo.id %}">Delete</a></td>
     </tr>
 {% empty %}
     <tr>

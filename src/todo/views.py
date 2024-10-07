@@ -1,7 +1,8 @@
 from collections.abc import Sequence
 from django.views.generic import (
     ListView,
-    CreateView
+    CreateView,
+    DeleteView,
 )
 
 from django.shortcuts import redirect
@@ -31,6 +32,15 @@ class CreateTodoItem(CreateView):
         "description",
         "due_date",
     ]
+
+    def get_success_url(self) -> str:
+        return reverse("todo-list")
+
+
+class DeleteTodoItem(DeleteView):
+    """ Class-based view to delete a Todo item. """
+    template_name = "todo/todo_confirm_delete.html"
+    model = TodoItem
 
     def get_success_url(self) -> str:
         return reverse("todo-list")
